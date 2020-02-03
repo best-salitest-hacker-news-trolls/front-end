@@ -1,0 +1,1 @@
+// global styled component here!

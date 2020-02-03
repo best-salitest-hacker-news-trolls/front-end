@@ -14,11 +14,13 @@ export const rootReducer = (state = initialState, action) => {
 
   switch (type) {
     case types.REGISTER_LOADING:
+    case types.LOGIN_LOADING:
       return {
         ...state,
         isLoading: true
       };
     case types.REGISTER_SUCCESS:
+    case types.LOGIN_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
@@ -26,15 +28,20 @@ export const rootReducer = (state = initialState, action) => {
         errors: null
       };
     case types.REGISTER_FAILURE:
+    case types.LOGIN_FAILURE:
       return {
         ...state,
         isAuthenticated: false,
         isLoading: false,
         errors: payload
       };
-    default:
+    case types.LOGOUT:
       return {
-        ...state
+        ...state,
+        isAuthenticated: false,
+        isLoading: false
       };
+    default:
+      return state;
   }
 };

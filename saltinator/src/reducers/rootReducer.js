@@ -1,9 +1,10 @@
 const initialState = {
   isAuthenticated: false,
+  isLoading: false,
   errors: null,
   leaderboard: [],
   comments: [],
-  saved: []
+  savedComments: []
 };
 
 export const rootReducer = (state = initialState, action) => {

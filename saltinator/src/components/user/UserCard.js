@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { saveComment } from "../../actions/saving";
+import { deleteComment } from "../../actions/delete";
+import { useHistory } from "react-router-dom";
 
 const Card = styled.div`
   display: flex;
@@ -22,18 +24,32 @@ const Button = styled.button`
 `;
 
 const UserCard = ({
-  comment: { favorite_comments: comment, username, fav_salt_score: salt_score },
+  comment: {
+    favorite_comments: comment,
+    username,
+    comment_id,
+    fav_salt_score: salt_score
+  },
   saveComment,
+  deleteComment,
   userID
 }) => {
+  const {
+    location: { pathname }
+  } = useHistory();
+
   return (
     <Card>
       <br />"{comment}"<br />- {username}
-      <Button
-        onClick={() => saveComment(userID, { userID, comment, salt_score })}
-      >
-        Save
-      </Button>
+      {pathname !== "/saved" ? (
+        <Button
+          onClick={() => saveComment(userID, { userID, comment, salt_score })}
+        >
+          Save
+        </Button>
+      ) : (
+        <Button onClick={() => deleteComment(userID, comment_id)}>Delete</Button>
+      )}
     </Card>
   );
 };
@@ -44,4 +60,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { saveComment })(UserCard);
+export default connect(mapStateToProps, { saveComment, deleteComment })(
+  UserCard
+);

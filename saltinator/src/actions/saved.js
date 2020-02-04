@@ -1,4 +1,3 @@
-import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 import { SAVED_LOADING, SAVED_SUCCESS, SAVED_FAILURE } from "./types";

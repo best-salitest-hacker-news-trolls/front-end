@@ -28,26 +28,26 @@ export const leaderboardData = [
 export const commentData = [
   {
     username: "salty_boi999",
-    comment: "gamecube isn't even a cube",
+    favorite_comments: "gamecube isn't even a cube",
     comment_id: 1,
-    salt_score: 98
+    fav_salt_score: 98
   },
   {
     username: "sodium_champ12",
-    comment: "*linus torvalds has left the chat*",
+    favorite_comments: "*linus torvalds has left the chat*",
     comment_id: 2,
-    salt_score: 85
+    fav_salt_score: 85
   },
   {
     username: "snarkyuser987",
-    comment: "beyond burger is people",
+    favorite_comments: "beyond burger is people",
     comment_id: 3,
-    salt_score: 83
+    fav_salt_score: 83
   },
   {
     username: "i_use_arch_btw",
-    comment: "yeah sry dreamcast is objectively cooler",
+    favorite_comments: "yeah sry dreamcast is objectively cooler",
     comment_id: 2,
-    salt_score: 85
+    fav_salt_score: 85
   }
 ];

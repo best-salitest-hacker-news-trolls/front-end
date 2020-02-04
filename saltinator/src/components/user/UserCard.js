@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { saveComment } from "../../actions/saving";
@@ -22,7 +22,7 @@ const Button = styled.button`
 `;
 
 const UserCard = ({
-  comment: { comment, username, salt_score },
+  comment: { favorite_comments: comment, username, fav_salt_score: salt_score },
   saveComment,
   userID
 }) => {

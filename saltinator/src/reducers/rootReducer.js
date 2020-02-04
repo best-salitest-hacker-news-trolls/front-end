@@ -6,7 +6,8 @@ const initialState = {
   errors: null,
   leaderboard: [],
   comments: [],
-  savedComments: []
+  savedComments: [],
+  userID: null
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -25,7 +26,8 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         isAuthenticated: true,
         isLoading: false,
-        errors: null
+        errors: null,
+        userID: payload.userID
       };
     case types.REGISTER_FAILURE:
     case types.LOGIN_FAILURE:
@@ -39,7 +41,8 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: false,
-        isLoading: false
+        isLoading: false,
+        userID: null
       };
     default:
       return state;

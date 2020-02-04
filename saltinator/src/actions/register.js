@@ -8,7 +8,10 @@ export const register = (creds, history) => async dispatch => {
       "https://saltiest-hacker-news-troll-dev.herokuapp.com/api/register",
       creds
     );
-    dispatch({ type: REGISTER_SUCCESS, payload: res.data });
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: { token: res.data.token, userID: res.data.id }
+    });
     localStorage.setItem("salty_token", res.data.token);
     history.push("/leaderboard");
   } catch (err) {

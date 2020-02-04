@@ -13,10 +13,13 @@ const initialState = {
 export const rootReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
+  console.log(action, state);
+
   switch (type) {
     case types.REGISTER_LOADING:
     case types.LOGIN_LOADING:
     case types.SAVING_LOADING:
+    case types.DELETE_LOADING:
       return {
         ...state,
         isLoading: true
@@ -36,6 +39,15 @@ export const rootReducer = (state = initialState, action) => {
         isLoading: false,
         errors: null,
         savedComments: [...state.savedComments, payload]
+      };
+    case types.DELETE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        errors: null,
+        savedComments: state.savedComments.filter(
+          comment => comment.comment_id !== Number(payload)
+        )
       };
     case types.SAVED_SUCCESS:
       return {

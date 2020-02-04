@@ -1,34 +1,55 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import "./formStyles.css";
-import { Link } from "react-router-dom";
-
+import { register as registerAction } from "../../actions/register";
+import { connect } from "react-redux";
 
 const schema = Yup.object().shape({
-  Username: Yup.string().required("Username is required"),
-  Email: Yup.string()
+  username: Yup.string().required("Username is required"),
+  email: Yup.string()
     .required("Email is required")
     .email("Email not valid"),
-  Password: Yup.string().required("Password is Required"),
-  ConfirmPassword: Yup.string().oneOf(
-    [Yup.ref("Password")],
+  password: Yup.string().required("Password is Required"),
+  confirmPassword: Yup.string().oneOf(
+    [Yup.ref("password")],
     "Passwords do not match"
   )
 });
 
-export const Register = () => {
+const Register = ({ registerAction }) => {
+  let history = useHistory();
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+  });
+
   const { register, handleSubmit, errors, watch } = useForm({
     validationSchema: schema
   });
-  const Password = useRef({});
-  Password.current = watch("Password", "");
 
-  const onSubmit = data => console.log(data);
-  console.log(errors);
+  const Password = useRef({});
+  Password.current = watch("password", "");
+
+  const handleChange = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const registerUser = () => {
+    registerAction(
+      {
+        username: formData.username,
+        password: formData.password
+      },
+      history
+    );
+  };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(registerUser)}>
       <h1>Create an account</h1>
 
       <label>
@@ -36,21 +57,23 @@ export const Register = () => {
         <input
           type="text"
           placeholder="Username"
-          name="Username"
+          name="username"
+          onChange={handleChange}
           ref={register({ required: true, max: 20, min: 3, maxLength: 80 })}
         />
-        {errors.Username && <p>{errors.Username.message}</p>}
+        {errors.username && <p>{errors.username.message}</p>}
       </label>
 
       <label>
         Email
-          <input
+        <input
           type="email"
           placeholder="Email"
-          name="Email"
+          name="email"
+          onChange={handleChange}
           ref={register({ required: true, pattern: /^\S+@\S+$/i })}
         />
-        {errors.Email && <p>{errors.Email.message}</p>}
+        {errors.email && <p>{errors.email.message}</p>}
       </label>
 
       <label>
@@ -58,34 +81,38 @@ export const Register = () => {
         <input
           type="password"
           placeholder="Password"
-          name="Password"
+          name="password"
+          onChange={handleChange}
           ref={register({ required: true, min: 6 })}
         />
-        {errors.Password && <p>{errors.Password.message}</p>}
+        {errors.password && <p>{errors.password.message}</p>}
       </label>
 
       <label>
         Confirm Password
-          <input
+        <input
           type="password"
           placeholder="Confirm Password"
-          name="ConfirmPassword"
+          name="confirmPassword"
+          onChange={handleChange}
           ref={register({ required: true })}
         />
-        {errors.ConfirmPassword && <p>{errors.ConfirmPassword.message}</p>}
-        </label>
+        {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
+      </label>
       <label>
-        <button type="submit" onClick={handleSubmit(onSubmit)}>
+        <button type="submit" onClick={handleSubmit(registerUser)}>
           Sign Up
         </button>
       </label>
 
       <label>
         Already have an account? &nbsp;
-        <Link to="/Login" style={{ color: "white" }}>
+        <Link to="/login" style={{ color: "white" }}>
           Sign In
         </Link>
       </label>
     </form>
   );
-}
+};
+
+export default connect(null, { registerAction })(Register);

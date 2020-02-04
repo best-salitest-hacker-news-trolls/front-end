@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import PrivateRoute from "./components/PrivateRoute";
-import { Register } from "./components/register/Register";
-import { Login } from "./components/login/Login";
+import Register from "./components/register/Register";
+import Login from "./components/login/Login";
 import { Leaderboard } from "./components/leaderboard/Leaderboard";
 import { User } from "./components/user/User";
 import { Saved } from "./components/saved/Saved";

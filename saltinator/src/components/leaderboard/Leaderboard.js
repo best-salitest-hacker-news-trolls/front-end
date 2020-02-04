@@ -10,23 +10,8 @@ const HeaderContainer = styled.div`
 `;
 
 export const Leaderboard = () => {
-  const [leaders, setLeaders] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get("https://swapi.co/api/people/")
-
-      .then(response => {
-        setLeaders(response.data);
-        console.log(response.data);
-      })
-
-      .catch(error => {
-        console.log("Server Error", error);
-      });
-  }, []);
-  // const newLeader = Object.key(leaders)
-  return (
+    return (
     <div>
       <form>
         <h1>Leaderboard</h1>

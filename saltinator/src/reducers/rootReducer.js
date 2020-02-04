@@ -13,11 +13,10 @@ const initialState = {
 export const rootReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
-  console.log(payload);
-
   switch (type) {
     case types.REGISTER_LOADING:
     case types.LOGIN_LOADING:
+    case types.SAVING_LOADING:
       return {
         ...state,
         isLoading: true
@@ -30,6 +29,13 @@ export const rootReducer = (state = initialState, action) => {
         isLoading: false,
         errors: null,
         userID: payload.userID
+      };
+    case types.SAVING_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        errors: null,
+        savedComments: [...state.savedComments, payload]
       };
     case types.REGISTER_FAILURE:
     case types.LOGIN_FAILURE:

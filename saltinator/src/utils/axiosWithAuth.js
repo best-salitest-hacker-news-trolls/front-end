@@ -5,7 +5,7 @@ export const axiosWithAuth = () => {
     baseURL: "https://saltiest-hacker-news-troll-dev.herokuapp.com/api/",
     headers: {
       "Content-Type": "application/json",
-      Authorization: localStorage.getItem("token")
+      Authorization: localStorage.getItem("salty_token")
     }
   });
 };

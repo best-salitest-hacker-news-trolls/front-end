@@ -2,7 +2,7 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 import { SAVED_LOADING, SAVED_SUCCESS, SAVED_FAILURE } from "./types";
 
-export const fetchComment = id => dispatch => {
+export const fetchComments = id => dispatch => {
   dispatch({ type: SAVED_LOADING });
   return axiosWithAuth()
     .get(`users/${id}/favorites`)

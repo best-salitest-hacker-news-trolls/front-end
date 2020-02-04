@@ -37,6 +37,13 @@ export const rootReducer = (state = initialState, action) => {
         errors: null,
         savedComments: [...state.savedComments, payload]
       };
+    case types.SAVED_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        errors: null,
+        savedComments: payload
+      };
     case types.REGISTER_FAILURE:
     case types.LOGIN_FAILURE:
       return {

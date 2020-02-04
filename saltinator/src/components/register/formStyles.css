@@ -17,6 +17,12 @@ body {
     border-bottom: 1px solid #2a3c58;
   }
   
+  h2 {
+    color: white;
+    font-size: 25px;
+    font-weight: 200;
+  }
+
   .form {
     max-width: 400px;
     margin: 0 auto;
@@ -121,7 +127,7 @@ body {
   button {
     display: block;
     appearance: none;
-    margin-top: 40px;
+    margin-top: 20px;
     border: 1px solid #333;
     margin-bottom: 20px;
     text-transform: uppercase;

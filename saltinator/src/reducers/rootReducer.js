@@ -7,11 +7,13 @@ const initialState = {
   leaderboard: [],
   comments: [],
   savedComments: [],
-  userID: null
+  userID: localStorage.getItem("salty_id") || null
 };
 
 export const rootReducer = (state = initialState, action) => {
   const { type, payload } = action;
+
+  console.log(payload);
 
   switch (type) {
     case types.REGISTER_LOADING:

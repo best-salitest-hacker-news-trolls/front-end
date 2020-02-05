@@ -45,27 +45,40 @@ const activeStyles = {
   textDecoration: "underline"
 };
 
-const Navigation = ({ logout }) => {
+const Navigation = ({ logout, isAuthenticated }) => {
   return (
     <NavBar>
       <Logo>
         <StyledNavLink to="/leaderboard">λ-Saltinator</StyledNavLink>
         <SaltImage src="salt.svg" />
       </Logo>
-      <SearchForm></SearchForm>
+
+      {isAuthenticated && <SearchForm></SearchForm>}
+
       <NavLinks>
         <StyledNavLink activeStyle={activeStyles} to="/leaderboard">
           Leaderboard
         </StyledNavLink>
-        <StyledNavLink activeStyle={activeStyles} to="/saved">
-          Favorites
-        </StyledNavLink>
-        <StyledNavLink to="/login" onClick={logout}>
-          Logout
-        </StyledNavLink>
+        {isAuthenticated && (
+          <StyledNavLink activeStyle={activeStyles} to="/saved">
+            Favorites
+          </StyledNavLink>
+        )}
+
+        {isAuthenticated && (
+          <StyledNavLink to="/login" onClick={logout}>
+            Logout
+          </StyledNavLink>
+        )}
       </NavLinks>
     </NavBar>
   );
 };
 
-export default connect(null, { logout })(Navigation);
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.isAuthenticated
+  };
+};
+
+export default connect(mapStateToProps, { logout })(Navigation);

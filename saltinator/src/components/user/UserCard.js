@@ -47,7 +47,8 @@ const UserCard = ({
   deleteComment,
   userID,
   errors,
-  savedComments
+  savedComments,
+  isAuthenticated
 }) => {
   const {
     location: { pathname }
@@ -76,14 +77,16 @@ const UserCard = ({
       {pathname !== "/saved" ? (
         <>
           <br />"{comment}"<br />- {username}
-          <Button
-            disabled={disableButton()}
-            onClick={() =>
-              saveComment(userID, { userID, comment, username, salt_score })
-            }
-          >
-            {buttonText(comment)}
-          </Button>
+          {isAuthenticated && (
+            <Button
+              disabled={disableButton()}
+              onClick={() =>
+                saveComment(userID, { userID, comment, username, salt_score })
+              }
+            >
+              {buttonText(comment)}
+            </Button>
+          )}
         </>
       ) : (
         <>
@@ -101,7 +104,8 @@ const mapStateToProps = state => {
   return {
     userID: state.userID,
     errors: state.errors,
-    savedComments: state.savedComments
+    savedComments: state.savedComments,
+    isAuthenticated: state.isAuthenticated
   };
 };
 

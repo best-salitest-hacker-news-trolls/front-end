@@ -1,8 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 import SearchForm from "../layout/SearchForm";
+import { logout } from "../../actions/logout";
 
 const NavBar = styled.div`
   display: flex;
@@ -41,7 +43,7 @@ const activeStyles = {
   textDecoration: "underline"
 };
 
-const Navigation = () => {
+const Navigation = ({ logout }) => {
   return (
     <NavBar>
       <Logo>
@@ -56,7 +58,7 @@ const Navigation = () => {
         <StyledNavLink activeStyle={activeStyles} to="/saved">
           Favorites
         </StyledNavLink>
-        <StyledNavLink activeStyle={activeStyles} to="/login">
+        <StyledNavLink to="/login" onClick={logout}>
           Logout
         </StyledNavLink>
       </NavLinks>
@@ -64,4 +66,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default connect(null, { logout })(Navigation);

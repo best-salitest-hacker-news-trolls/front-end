@@ -1,3 +1,4 @@
+import axios from "axios";
 import { USER_LOADING, USER_SUCCESS, USER_FAILURE } from "./types";
 
 export const fetchUser = username => async dispatch => {

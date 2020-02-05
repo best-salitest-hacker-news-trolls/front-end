@@ -7,11 +7,13 @@ import Login from "./components/login/Login";
 import { Leaderboard } from "./components/leaderboard/Leaderboard";
 import User from "./components/user/User";
 import Saved from "./components/saved/Saved";
+import { Layout } from "./components/layout/Layout";
 
 function App() {
   return (
     <>
       <Router>
+        <Layout></Layout>
         <Route path="/register">
           <Register></Register>
         </Route>

@@ -70,6 +70,8 @@ const Navigation = ({ logout, isAuthenticated }) => {
             Logout
           </StyledNavLink>
         )}
+        
+        {!isAuthenticated && <StyledNavLink to="/login">Login</StyledNavLink>}
       </NavLinks>
     </NavBar>
   );

@@ -9,10 +9,12 @@ import { logout } from "../../actions/logout";
 const NavBar = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: auto;
   color: white;
   font-size: 40px;
   background-color: #2a3c58;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
 `;
 const NavLinks = styled.div`
   display: flex;

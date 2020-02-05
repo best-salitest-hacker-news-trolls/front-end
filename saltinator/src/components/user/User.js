@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import UserCard from "./UserCard";
-import { commentData } from "../../utils/mockData";
 import styled from "styled-components";
+
+import { commentData } from "../../utils/mockData";
 
 const CommentContainer = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ const CommentContainer = styled.div`
   margin: 0 auto;
 `;
 
-export const User = () => {
+const User = () => {
   return (
     <div>
       <form>
@@ -29,3 +29,5 @@ export const User = () => {
     </div>
   );
 };
+
+export default User;

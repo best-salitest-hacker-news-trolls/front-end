@@ -8,8 +8,12 @@ export const login = (creds, history) => async dispatch => {
       "https://saltiest-hacker-news-troll-dev.herokuapp.com/api/login",
       creds
     );
-    dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: { token: res.data.token, userID: res.data.id }
+    });
     localStorage.setItem("salty_token", res.data.token);
+    localStorage.setItem("salty_id", res.data.id);
     history.push("/leaderboard");
   } catch (err) {
     dispatch({ type: LOGIN_FAILURE, payload: err });

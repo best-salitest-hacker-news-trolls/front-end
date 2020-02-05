@@ -1,34 +1,65 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom"
+import { connect } from "react-redux";
+import { saveComment } from "../../actions/saving";
+import { deleteComment } from "../../actions/delete";
+import { useHistory } from "react-router-dom";
 
 const Card = styled.div`
-display: flex;
-justify-content: space-between;
-width: 40vw;
-padding-left: 20px;
-padding-right: 20px;
-margin: 10px;
-background-color: #97adce;
-`
+  display: flex;
+  justify-content: space-between;
+  width: 40vw;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 10px;
+  background-color: #97adce;
+`;
 const Button = styled.button`
-background-color: #2a3c58;
-color: white;
-// width: 25%;
-height: 35px;
-font-family: "Roboto Mono", monospace;
-&:hover{
-background-color: #3E5982;
-`
+  background-color: #2a3c58;
+  color: white;
+  height: 35px;
+  font-family: "Roboto Mono", monospace;
+  &:hover{
+  background-color: #3E5982;
+`;
 
-const UserCard = props => {
+const UserCard = ({
+  comment: {
+    favorite_comments: comment,
+    username,
+    comment_id,
+    fav_salt_score: salt_score
+  },
+  saveComment,
+  deleteComment,
+  userID
+}) => {
+  const {
+    location: { pathname }
+  } = useHistory();
+
   return (
-    <Card><br/>
-        "{props.comment.comment}"<br/>
-        - {props.comment.username}
-        
-        <Button>Save</Button>
+    <Card>
+      <br />"{comment}"<br />- {username}
+      {pathname !== "/saved" ? (
+        <Button
+          onClick={() => saveComment(userID, { userID, comment, salt_score })}
+        >
+          Save
+        </Button>
+      ) : (
+        <Button onClick={() => deleteComment(userID, comment_id)}>Delete</Button>
+      )}
     </Card>
   );
 };
-export default UserCard;
+
+const mapStateToProps = state => {
+  return {
+    userID: state.userID
+  };
+};
+
+export default connect(mapStateToProps, { saveComment, deleteComment })(
+  UserCard
+);

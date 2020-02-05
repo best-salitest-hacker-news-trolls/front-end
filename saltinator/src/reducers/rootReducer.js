@@ -6,15 +6,20 @@ const initialState = {
   errors: null,
   leaderboard: [],
   comments: [],
-  savedComments: []
+  savedComments: [],
+  userID: localStorage.getItem("salty_id") || null
 };
 
 export const rootReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
+  console.log(action, state);
+
   switch (type) {
     case types.REGISTER_LOADING:
     case types.LOGIN_LOADING:
+    case types.SAVING_LOADING:
+    case types.DELETE_LOADING:
       return {
         ...state,
         isLoading: true
@@ -25,7 +30,31 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         isAuthenticated: true,
         isLoading: false,
-        errors: null
+        errors: null,
+        userID: payload.userID
+      };
+    case types.SAVING_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        errors: null,
+        savedComments: [...state.savedComments, payload]
+      };
+    case types.DELETE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        errors: null,
+        savedComments: state.savedComments.filter(
+          comment => comment.comment_id !== Number(payload)
+        )
+      };
+    case types.SAVED_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        errors: null,
+        savedComments: payload
       };
     case types.REGISTER_FAILURE:
     case types.LOGIN_FAILURE:
@@ -39,7 +68,8 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: false,
-        isLoading: false
+        isLoading: false,
+        userID: null
       };
     default:
       return state;

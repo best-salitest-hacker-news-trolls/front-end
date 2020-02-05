@@ -19,6 +19,7 @@ export const rootReducer = (state = initialState, action) => {
     case types.SAVING_LOADING:
     case types.DELETE_LOADING:
     case types.LEADERBOARD_LOADING:
+    case types.USER_LOADING:
       return {
         ...state,
         isLoading: true
@@ -61,6 +62,20 @@ export const rootReducer = (state = initialState, action) => {
         isLoading: false,
         errors: null,
         leaderboard: payload
+      };
+    case types.USER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        errors: null,
+        comments: payload
+      };
+    case types.USER_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        errors: payload,
+        comments: []
       };
     case types.LEADERBOARD_FAILURE:
       return {

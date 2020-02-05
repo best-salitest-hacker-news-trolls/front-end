@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import SearchForm from "../layout/SearchForm";
@@ -29,7 +29,7 @@ const SaltImage = styled.img`
   height: 70px;
 `;
 
-const StyledLink = styled(Link)`
+const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   padding-right: 20px;
   :visited {
@@ -37,18 +37,28 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const activeStyles = {
+  textDecoration: "underline"
+};
+
 const Navigation = () => {
   return (
     <NavBar>
       <Logo>
-        <StyledLink to="/leaderboard">λ-Saltinator</StyledLink>
+        <StyledNavLink to="/leaderboard">λ-Saltinator</StyledNavLink>
         <SaltImage src="salt.svg" />
       </Logo>
       <SearchForm></SearchForm>
       <NavLinks>
-        <StyledLink to="/leaderboard">Leaderboard</StyledLink>
-        <StyledLink to="/saved">Favorites</StyledLink>
-        <StyledLink to="/login">Logout</StyledLink>
+        <StyledNavLink activeStyle={activeStyles} to="/leaderboard">
+          Leaderboard
+        </StyledNavLink>
+        <StyledNavLink activeStyle={activeStyles} to="/saved">
+          Favorites
+        </StyledNavLink>
+        <StyledNavLink activeStyle={activeStyles} to="/login">
+          Logout
+        </StyledNavLink>
       </NavLinks>
     </NavBar>
   );

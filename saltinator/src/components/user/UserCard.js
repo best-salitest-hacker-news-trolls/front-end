@@ -19,8 +19,20 @@ const Button = styled.button`
   color: white;
   height: 35px;
   font-family: "Roboto Mono", monospace;
-  &:hover{
-  background-color: #3E5982;
+
+  &:hover {
+    background-color: #3e5982;
+    cursor: pointer;
+  }
+
+  :disabled {
+    background-color: #3c3c3c;
+    opacity: 0.8;
+
+    :hover {
+      cursor: default;
+    }
+  }
 `;
 
 const UserCard = ({
@@ -33,24 +45,48 @@ const UserCard = ({
   },
   saveComment,
   deleteComment,
-  userID
+  userID,
+  errors,
+  savedComments,
+  isAuthenticated
 }) => {
   const {
     location: { pathname }
   } = useHistory();
+
+  const isSaved = savedComments.filter(
+    item => item.favorite_comments === comment
+  ).length;
+
+  const buttonText = () => {
+    if (!errors && isSaved) {
+      return "Saved";
+    } else {
+      return "Save";
+    }
+  };
+
+  const disableButton = () => {
+    if (isSaved) {
+      return true;
+    } else return false;
+  };
 
   return (
     <Card>
       {pathname !== "/saved" ? (
         <>
           <br />"{comment}"<br />- {username}
-          <Button
-            onClick={() =>
-              saveComment(userID, { userID, comment, username, salt_score })
-            }
-          >
-            Save
-          </Button>
+          {isAuthenticated && (
+            <Button
+              disabled={disableButton()}
+              onClick={() =>
+                saveComment(userID, { userID, comment, username, salt_score })
+              }
+            >
+              {buttonText(comment)}
+            </Button>
+          )}
         </>
       ) : (
         <>
@@ -66,7 +102,10 @@ const UserCard = ({
 
 const mapStateToProps = state => {
   return {
-    userID: state.userID
+    userID: state.userID,
+    errors: state.errors,
+    savedComments: state.savedComments,
+    isAuthenticated: state.isAuthenticated
   };
 };
 

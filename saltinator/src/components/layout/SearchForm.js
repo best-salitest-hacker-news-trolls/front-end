@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import connect from "react-redux";
+import { connect } from "react-redux";
+import styled from "styled-components";
 
 import { fetchUser } from "../../actions/user";
 
@@ -21,7 +22,7 @@ const SearchForm = props => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <label>Search</label>
       <input
         type="text"
@@ -29,8 +30,14 @@ const SearchForm = props => {
         placeholder="search by username"
         onChange={handleChange}
       />
-    </form>
+    </Form>
   );
 };
 
 export default connect(null, { fetchUser })(SearchForm);
+
+const Form = styled.form`
+  label {
+    margin: 0;
+  }
+`;

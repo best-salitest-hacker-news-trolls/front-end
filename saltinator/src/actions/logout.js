@@ -1,6 +1,7 @@
 import { LOGOUT } from "./types";
 
-export const logout = history => dispatch => {
+export const logout = () => dispatch => {
   dispatch({ type: LOGOUT });
-  history.push("/login");
+  localStorage.removeItem("salty_token");
+  localStorage.removeItem("salty_id");
 };

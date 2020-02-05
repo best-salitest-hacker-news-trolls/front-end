@@ -1,18 +1,24 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { connect } from "react-redux";
+
+import SearchForm from "../layout/SearchForm";
+import { logout } from "../../actions/logout";
 
 const NavBar = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: auto;
   color: white;
   font-size: 40px;
   background-color: #2a3c58;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
 `;
 const NavLinks = styled.div`
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
   font-size: 25px;
   padding: 20px;
   text-decoration: none;
@@ -27,32 +33,52 @@ const SaltImage = styled.img`
   height: 70px;
 `;
 
-const StyledLink = styled(Link)`
-text-decoration: none;
-padding-right: 20px;
-:visited{
-    color: inherit
-}
+const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  padding-right: 20px;
+  :visited {
+    color: inherit;
+  }
 `;
 
-const Navigation = () => {
+const activeStyles = {
+  textDecoration: "underline"
+};
+
+const Navigation = ({ logout, isAuthenticated }) => {
   return (
     <NavBar>
-          
-
       <Logo>
-          
-        <StyledLink to="/leaderboard">λ-Saltinator</StyledLink>
+        <StyledNavLink to="/leaderboard">λ-Saltinator</StyledNavLink>
         <SaltImage src="salt.svg" />
       </Logo>
+
+      {isAuthenticated && <SearchForm></SearchForm>}
+
       <NavLinks>
-        <StyledLink to="/leaderboard">Leaderboard</StyledLink>
-        <StyledLink to="/saved">Favorites</StyledLink>
-        <StyledLink to="/login">Logout</StyledLink>
+        <StyledNavLink activeStyle={activeStyles} to="/leaderboard">
+          Leaderboard
+        </StyledNavLink>
+        {isAuthenticated && (
+          <StyledNavLink activeStyle={activeStyles} to="/saved">
+            Favorites
+          </StyledNavLink>
+        )}
+
+        {isAuthenticated && (
+          <StyledNavLink to="/login" onClick={logout}>
+            Logout
+          </StyledNavLink>
+        )}
       </NavLinks>
-      
     </NavBar>
   );
 };
 
-export default Navigation;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.isAuthenticated
+  };
+};
+
+export default connect(mapStateToProps, { logout })(Navigation);

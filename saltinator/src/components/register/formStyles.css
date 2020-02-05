@@ -16,6 +16,10 @@ body {
     padding-bottom: 10px;
     border-bottom: 1px solid #2a3c58;
   }
+
+  /* a {
+    text-decoration: none;
+  } */
   
   h2 {
     color: white;
@@ -115,7 +119,7 @@ body {
     background: #333;
     color: white;
     border: none;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     padding: 10px 20px;
     border-radius: 4px;
   }
@@ -130,8 +134,9 @@ body {
     margin-top: 20px;
     border: 1px solid #333;
     margin-bottom: 20px;
-    text-transform: uppercase;
+    text-transform: uppercase; 
     padding: 10px 20px;
     border-radius: 4px;
+   
   }
   

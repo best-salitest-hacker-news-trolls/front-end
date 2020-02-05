@@ -3,6 +3,7 @@ import axios from "axios";
 import LeaderCard from "./LeaderCard";
 import { leaderboardData } from "../../utils/mockData";
 import styled from "styled-components";
+import Navigation from "../navigation/navigation"
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -13,7 +14,9 @@ export const Leaderboard = () => {
 
     return (
     <div>
+      <Navigation/>
       <form>
+        
         <h1>Leaderboard</h1>
 
         <HeaderContainer>

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 const Card = styled.div`
   display: flex;
@@ -25,7 +25,6 @@ const Button = styled.button`
   
 `;
 
-
 const CardContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -49,9 +48,9 @@ const LeaderCard = props => {
           <br />
           Grains of salt: {props.leader.salt_score}
         </h4>
-        <Link to={`/user/${props.leader.id}`}>
+        <NavLink to={`/user/${props.leader.id}`}>
         <Button>View Comments</Button>
-        </Link>
+        </NavLink>
       </Card>
     </CardContainer>
   );

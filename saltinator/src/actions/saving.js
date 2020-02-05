@@ -6,6 +6,7 @@ export const saveComment = (userID, data) => async dispatch => {
   try {
     const payload = {
       user_id: data.userID,
+      Hacker_News_User: data.username,
       favorite_comments: data.comment,
       fav_salty_score: data.salt_score
     };

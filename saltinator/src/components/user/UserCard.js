@@ -28,6 +28,7 @@ const UserCard = ({
     favorite_comments: comment,
     username,
     comment_id,
+    Hacker_News_User: hackerNewsUser,
     fav_salt_score: salt_score
   },
   saveComment,
@@ -40,15 +41,24 @@ const UserCard = ({
 
   return (
     <Card>
-      <br />"{comment}"<br />- {username}
       {pathname !== "/saved" ? (
-        <Button
-          onClick={() => saveComment(userID, { userID, comment, salt_score })}
-        >
-          Save
-        </Button>
+        <>
+          <br />"{comment}"<br />- {username}
+          <Button
+            onClick={() =>
+              saveComment(userID, { userID, comment, username, salt_score })
+            }
+          >
+            Save
+          </Button>
+        </>
       ) : (
-        <Button onClick={() => deleteComment(userID, comment_id)}>Delete</Button>
+        <>
+          <br />"{comment}"<br />- {hackerNewsUser}
+          <Button onClick={() => deleteComment(userID, comment_id)}>
+            Delete
+          </Button>
+        </>
       )}
     </Card>
   );

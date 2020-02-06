@@ -36,8 +36,13 @@ const SaltImage = styled.img`
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   padding-right: 20px;
+
   :visited {
     color: inherit;
+  }
+
+  :hover {
+    color: #bbb;
   }
 `;
 
@@ -70,7 +75,7 @@ const Navigation = ({ logout, isAuthenticated }) => {
             Logout
           </StyledNavLink>
         )}
-        
+
         {!isAuthenticated && <StyledNavLink to="/login">Login</StyledNavLink>}
       </NavLinks>
     </NavBar>

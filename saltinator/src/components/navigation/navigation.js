@@ -15,10 +15,9 @@ const NavBar = styled.div`
   font-size: 40px;
   background-color: #2a3c58;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
-  @media (max-width: 768px){
+  @media (max-width: 768px) {
     flex-direction: column;
   }
-
 `;
 const NavLinks = styled.div`
   display: flex;
@@ -59,6 +58,7 @@ const SaltImage = styled.img`
   width: 70px;
   height: 70px;
   transform: scaleX(-1);
+  margin-left: -15px;
 
   :hover {
     animation: ${shake} 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;

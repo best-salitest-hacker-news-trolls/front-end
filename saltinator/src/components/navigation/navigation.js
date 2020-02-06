@@ -15,6 +15,10 @@ const NavBar = styled.div`
   font-size: 40px;
   background-color: #2a3c58;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
+  @media (max-width: 768px){
+    flex-direction: column;
+  }
+
 `;
 const NavLinks = styled.div`
   display: flex;

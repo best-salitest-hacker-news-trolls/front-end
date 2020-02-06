@@ -1,6 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 import PrivateRoute from "./components/PrivateRoute";
 import Register from "./components/register/Register";
@@ -16,6 +16,7 @@ const App = props => {
     <>
       <Router>
         <Layout></Layout>
+        <Redirect from="/" to="/leaderboard"></Redirect>
         <Route path="/register">
           <Register></Register>
         </Route>

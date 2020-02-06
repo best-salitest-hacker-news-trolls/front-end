@@ -24,12 +24,15 @@ const SearchForm = props => {
   return (
     <Form onSubmit={handleSubmit}>
       <label>Search</label>
-      <input
-        type="text"
-        name="username"
-        placeholder="search by username"
-        onChange={handleChange}
-      />
+      <div>
+        <img src="search.svg" alt="search icon"/>
+        <input
+          type="text"
+          name="username"
+          placeholder="search by username"
+          onChange={handleChange}
+        />
+      </div>
     </Form>
   );
 };
@@ -37,7 +40,30 @@ const SearchForm = props => {
 export default connect(null, { fetchUser })(SearchForm);
 
 const Form = styled.form`
+  div {
+    border-radius: 4px;
+    background-color: #fff;
+    display: flex;
+    padding: 5px 5px 5px 10px;
+    align-self: center;
+  }
+
+  img {
+    width: 20px;
+  }
+
+  input {
+    margin: 0 0 0 5px;
+    padding: 5px;
+  }
+
   label {
-    margin: 0;
+    // push offscreen but keep label for screen readers :)
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
   }
 `;

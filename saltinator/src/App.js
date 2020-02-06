@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 import PrivateRoute from "./components/PrivateRoute";
 import Register from "./components/register/Register";
@@ -14,6 +14,7 @@ function App() {
     <>
       <Router>
         <Layout></Layout>
+        <Redirect from="/" to="/leaderboard"></Redirect>
         <Route path="/register">
           <Register></Register>
         </Route>

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, NavLink } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 const Card = styled.div`
   display: flex;
@@ -17,12 +17,16 @@ const Card = styled.div`
 const Button = styled.button`
   background-color: #2a3c58;
   color: white;
-  // width: 25%;
   font-family: "Roboto Mono", monospace;
-  &:hover{
-  background-color: #3E5982;
+
+  :hover {
+    background-color: #3e5982;
+    cursor: pointer;
   }
-  
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `;
 
 const CardContainer = styled.div`
@@ -35,7 +39,7 @@ const Rank = styled.h3`
   font-family: "Roboto Mono", monospace;
   padding-right: 30px;
   padding-left: 30px;
-`
+`;
 
 const LeaderCard = props => {
   return (
@@ -48,9 +52,9 @@ const LeaderCard = props => {
           <br />
           Grains of salt: {props.leader.salt_score}
         </h4>
-        <NavLink to={`/user/${props.leader.id}`}>
-        <Button>View Comments</Button>
-        </NavLink>
+        <StyledLink to={`/user/${props.leader.id}`}>
+          <Button>View Comments</Button>
+        </StyledLink>
       </Card>
     </CardContainer>
   );

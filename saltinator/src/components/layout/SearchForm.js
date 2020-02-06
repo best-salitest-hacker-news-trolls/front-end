@@ -25,7 +25,7 @@ const SearchForm = props => {
     <Form onSubmit={handleSubmit}>
       <label>Search</label>
       <div>
-        <img src="search.svg" alt="search icon"/>
+        <img src="../search.svg" alt="search icon"/>
         <input
           type="text"
           name="username"

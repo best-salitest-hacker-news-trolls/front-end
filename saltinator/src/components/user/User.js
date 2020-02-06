@@ -5,12 +5,13 @@ import styled from "styled-components";
 import { commentData } from "../../utils/mockData";
 
 const CommentContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 45vw;
-  margin: 0 auto;
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+  // flex-wrap: wrap;
+  // border: 1px solid red;
+  // width: 90vw;
+  // margin: 0 auto;
 `;
 
 const User = () => {

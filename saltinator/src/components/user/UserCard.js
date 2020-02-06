@@ -12,8 +12,15 @@ const Card = styled.div`
   width: 40vw;
   padding-left: 20px;
   padding-right: 20px;
-  margin: 10px;
+  margin: auto;
+  margin-bottom: 10px;
   background-color: #97adce;
+  @media (max-width: 900px) {
+    width: 65vw;
+  }
+  @media (max-width: 500px) {
+    width: 95vw;
+  }
 `;
 const Button = styled.button`
   background-color: #2a3c58;

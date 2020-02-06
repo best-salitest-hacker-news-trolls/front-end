@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 const Card = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 40vw;
   padding-left: 20px;
   padding-right: 20px;
@@ -76,7 +77,9 @@ const UserCard = ({
     <Card>
       {pathname !== "/saved" ? (
         <>
-          <br />"{comment}"<br />- {username}
+          <div>
+            "{comment}"<br />- {username}
+          </div>
           {isAuthenticated && (
             <Button
               disabled={disableButton()}

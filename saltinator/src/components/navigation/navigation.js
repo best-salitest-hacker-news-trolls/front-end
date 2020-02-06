@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { connect } from "react-redux";
 
 import SearchForm from "../layout/SearchForm";
@@ -28,9 +28,37 @@ const Logo = styled.div`
   white-space: nowrap;
   padding: 20px 0 0 20px;
 `;
+
+const shake = keyframes`
+  10%,
+  90% {
+    transform: translate3d(-2px, 2px, 0px) scaleX(-1) rotate(-25deg);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(1px, -2px, 0px) scaleX(-1) rotate(-30deg);
+  }
+
+  30%,
+  70% {
+    transform: translate3d(-4px, 3px, 0px) scaleX(-1) rotate(-33deg);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(2px, -3px, 0px) scaleX(-1) rotate(-25deg);
+  }
+`;
+
 const SaltImage = styled.img`
   width: 70px;
   height: 70px;
+  transform: scaleX(-1);
+
+  :hover {
+    animation: ${shake} 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
 `;
 
 const StyledNavLink = styled(NavLink)`

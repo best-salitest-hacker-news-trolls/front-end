@@ -12,6 +12,12 @@ const Card = styled.div`
   // border: 2px solid red;
   margin: 5px;
   width: 45vw;
+    @media (max-width: 900px) {
+      width: 65vw;
+    }
+    @media (max-width: 500px) {
+      width: 95vw;
+    }
 `;
 
 const Button = styled.button`

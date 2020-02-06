@@ -14,13 +14,20 @@ const CommentContainer = styled.div`
   // margin: 0 auto;
 `;
 
+const Headers = styled.form`
+  h1,
+  h2 {
+    font-weight: 300;
+  }
+`;
+
 const User = () => {
   return (
     <div>
-      <form>
+      <Headers>
         <h1>Comments</h1>
         <h2>Username</h2>
-      </form>
+      </Headers>
 
       <CommentContainer>
         {commentData.map((comment, index) => (

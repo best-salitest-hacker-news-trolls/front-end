@@ -33,6 +33,13 @@ export const rootReducer = (state = initialState, action) => {
         errors: null,
         userID: payload.userID
       };
+    case types.SAVED_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        errors: null,
+        savedComments: payload
+      };
     case types.SAVING_SUCCESS:
       return {
         ...state,
@@ -49,13 +56,7 @@ export const rootReducer = (state = initialState, action) => {
           comment => comment.comment_id !== Number(payload)
         )
       };
-    case types.SAVED_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        errors: null,
-        savedComments: payload
-      };
+
     case types.LEADERBOARD_SUCCESS:
       return {
         ...state,

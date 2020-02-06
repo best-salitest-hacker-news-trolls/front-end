@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { connect } from "react-redux";
 
 import PrivateRoute from "./components/PrivateRoute";
 import Register from "./components/register/Register";
@@ -8,8 +9,9 @@ import { Leaderboard } from "./components/leaderboard/Leaderboard";
 import User from "./components/user/User";
 import Saved from "./components/saved/Saved";
 import { Layout } from "./components/layout/Layout";
+import Error from "./components/layout/Error";
 
-function App() {
+const App = props => {
   return (
     <>
       <Router>
@@ -28,8 +30,15 @@ function App() {
         </Route>
         <PrivateRoute path="/saved" component={Saved}></PrivateRoute>
       </Router>
+      {props.errors && <Error message={props.errors.message}></Error>}
     </>
   );
-}
+};
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    errors: state.errors
+  };
+};
+
+export default connect(mapStateToProps, {})(App);

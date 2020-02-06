@@ -17,12 +17,30 @@ const Card = styled.div`
   color: ${colors.text};
   border-radius: 4px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  transition: 0.2s ease-out width;
+
+  @media (max-width: 1200px) {
+    width: 70vw;
+  }
+
+  @media (max-width: 1000px) {
+    width: 75vw;
+  }
 
   @media (max-width: 900px) {
-    width: 65vw;
-  }
-  @media (max-width: 500px) {
-    width: 95vw;
+    width: 80vw;
+    grid-template-columns: 60px auto;
+
+    div {
+      justify-self: start;
+    }
+
+    a,
+    button {
+      grid-column: 1 / span 2;
+      width: 100%;
+      margin-top: 10px;
+    }
   }
 `;
 

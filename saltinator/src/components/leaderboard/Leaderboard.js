@@ -12,11 +12,19 @@ const HeaderContainer = styled.div`
   width: 45vw;
   justify-content: space-between;
 
-  @media (max-width: 900px) {
-    width: 65vw;
+  @media (max-width: 1200px) {
+    width: 70vw;
   }
-  @media (max-width: 500px) {
-    width: 95vw;
+
+  @media (max-width: 1000px) {
+    width: 75vw;
+  }
+
+  @media (max-width: 900px) {
+    width: 80vw;
+    h2 {
+      display: none;
+    }
   }
 `;
 

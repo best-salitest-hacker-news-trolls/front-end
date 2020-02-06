@@ -83,7 +83,7 @@ const Navigation = ({ logout, isAuthenticated }) => {
     <NavBar>
       <Logo>
         <StyledNavLink to="/leaderboard">λ-Saltinator</StyledNavLink>
-        <SaltImage src="salt.svg" />
+        <SaltImage src="../salt.svg" />
       </Logo>
 
       {isAuthenticated && <SearchForm></SearchForm>}

@@ -9,15 +9,14 @@ const Card = styled.div`
   color: white;
   background-color: #97adce;
   padding: 10px;
-  // border: 2px solid red;
   margin: 5px;
   width: 45vw;
-    @media (max-width: 900px) {
-      width: 65vw;
-    }
-    @media (max-width: 500px) {
-      width: 95vw;
-    }
+  @media (max-width: 900px) {
+    width: 65vw;
+  }
+  @media (max-width: 500px) {
+    width: 95vw;
+  }
 `;
 
 const Button = styled.button`
@@ -47,18 +46,20 @@ const Rank = styled.h3`
   padding-left: 30px;
 `;
 
-const LeaderCard = props => {
+const LeaderCard = ({
+  leader: { Hacker_News_User: username, fav_salty_score: salt_score }
+}) => {
   return (
     <CardContainer>
       <Card>
-        <Rank>#{props.leader.rank}</Rank>
+        <Rank>#1</Rank>
         <h4>
-          {props.leader.username}
+          {username}
           <br />
           <br />
-          Grains of salt: {props.leader.salt_score}
+          Grains of salt: {salt_score}
         </h4>
-        <StyledLink to={`/user/${props.leader.id}`}>
+        <StyledLink to={`/user/${username}`}>
           <Button>View Comments</Button>
         </StyledLink>
       </Card>

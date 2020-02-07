@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import PrivateRoute from "./components/PrivateRoute";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
-import { Leaderboard } from "./components/leaderboard/Leaderboard";
+import Leaderboard from "./components/leaderboard/Leaderboard";
 import User from "./components/user/User";
 import Saved from "./components/saved/Saved";
 import { Layout } from "./components/layout/Layout";

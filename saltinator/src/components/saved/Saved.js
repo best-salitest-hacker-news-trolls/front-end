@@ -11,6 +11,13 @@ const CommentContainer = styled.div`
   flex-wrap: wrap;
   width: 45vw;
   margin: 0 auto;
+
+  @media (max-width: 900px) {
+    width: 70vw;
+  }
+  @media (max-width: 500px) {
+    width: 90vw;
+  }
 `;
 
 const Saved = ({ userID, savedComments, fetchComments }) => {

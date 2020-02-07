@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+
+import { fetchUser } from "../../actions/user";
 
 const Card = styled.div`
   display: flex;
@@ -46,7 +50,13 @@ const Rank = styled.h3`
   padding-left: 30px;
 `;
 
-const LeaderCard = ({ leader: { Hacker_News_User: username }, salt, rank }) => {
+const LeaderCard = ({
+  leader: { Hacker_News_User: username },
+  salt,
+  rank,
+  fetchUser
+}) => {
+  let history = useHistory();
   return (
     <CardContainer>
       <Card>
@@ -57,11 +67,14 @@ const LeaderCard = ({ leader: { Hacker_News_User: username }, salt, rank }) => {
           <br />
           Grains of salt: {salt}
         </h4>
-        <StyledLink to={`/user/${username}`}>
+        <StyledLink
+          onClick={() => fetchUser(username, history)}
+          to={`/user/${username}`}
+        >
           <Button>View Comments</Button>
         </StyledLink>
       </Card>
     </CardContainer>
   );
 };
-export default LeaderCard;
+export default connect(null, { fetchUser })(LeaderCard);

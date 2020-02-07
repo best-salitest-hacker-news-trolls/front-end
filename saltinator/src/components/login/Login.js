@@ -11,7 +11,7 @@ const schema = Yup.object().shape({
 });
 
 const Login = ({ login }) => {
-  const history = useHistory();
+  let history = useHistory();
   const [formData, setFormData] = useState({ username: "", password: "" });
   const { register, handleSubmit, errors } = useForm({
     validationSchema: schema

@@ -7,7 +7,7 @@ import { fetchUser } from "../../actions/user";
 
 const SearchForm = ({ fetchUser }) => {
   const [username, setUsername] = useState("");
-  const history = useHistory();
+  let history = useHistory();
 
   const handleChange = e => {
     setUsername(e.target.value);

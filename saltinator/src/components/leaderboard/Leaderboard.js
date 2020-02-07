@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
-// import { leaderboardData } from "../../utils/mockData";
 import { fetchLeaderboard } from "../../actions/leaderboard";
 import LeaderCard from "./LeaderCard";
 

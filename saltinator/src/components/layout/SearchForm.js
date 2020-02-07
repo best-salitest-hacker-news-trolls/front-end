@@ -37,8 +37,8 @@ const SearchForm = ({ fetchUser, nav }) => {
 export default connect(null, { fetchUser })(SearchForm);
 
 const Form = styled.form`
-  width: 100%;
-  padding: ${props => props.nav ? `0 2rem 0 2rem` : `0`};
+  width: ${props => (props.nav ? `25vw` : `100%`)};
+  padding: ${props => (props.nav ? `0 2rem 0 2rem` : `0`)};
 
   div {
     border-radius: 4px;

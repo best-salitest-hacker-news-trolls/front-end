@@ -33,7 +33,7 @@ const Card = styled.div`
 
   @media (max-width: 900px) {
     width: 80vw;
-    grid-template-columns: 60px auto;
+    grid-template-columns: 110px auto;
 
     div {
       justify-self: start;

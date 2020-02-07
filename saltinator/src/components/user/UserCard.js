@@ -9,6 +9,7 @@ import colors from "../../styles/colors";
 
 const Card = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 40vw;
@@ -24,7 +25,7 @@ const Card = styled.div`
     width: 65vw;
   }
   @media (max-width: 500px) {
-    width: 95vw;
+    width: 80vw;
   }
 `;
 const Button = styled.button`

@@ -17,7 +17,7 @@ const User = ({ comments }) => {
     <div>
       <Headers>
         <h1>Comments</h1>
-        <h2>Username</h2>
+        <h2>{comments[0].Hacker_News_User}</h2>
       </Headers>
 
       <CommentContainer>

@@ -46,18 +46,16 @@ const Rank = styled.h3`
   padding-left: 30px;
 `;
 
-const LeaderCard = ({
-  leader: { Hacker_News_User: username, fav_salty_score: salt_score }
-}) => {
+const LeaderCard = ({ leader: { Hacker_News_User: username }, salt, rank }) => {
   return (
     <CardContainer>
       <Card>
-        <Rank>#1</Rank>
+        <Rank>#{rank}</Rank>
         <h4>
           {username}
           <br />
           <br />
-          Grains of salt: {salt_score}
+          Grains of salt: {salt}
         </h4>
         <StyledLink to={`/user/${username}`}>
           <Button>View Comments</Button>

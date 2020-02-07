@@ -24,7 +24,7 @@ const Leaderboard = ({ leaderboard: rawData, fetchLeaderboard }) => {
     fetchLeaderboard();
   }, [fetchLeaderboard]);
 
-  processLeaderboard(rawData);
+  const leaderboard = processLeaderboard(rawData);
 
   return (
     <div>
@@ -38,8 +38,13 @@ const Leaderboard = ({ leaderboard: rawData, fetchLeaderboard }) => {
         <h2>Comments</h2>
       </HeaderContainer>
 
-      {rawData.map((leader, index) => (
-        <LeaderCard leader={leader} key={index} />
+      {leaderboard.map((leader, index) => (
+        <LeaderCard
+          leader={leader[0]}
+          salt={leader.overall_salt}
+          rank={index + 1}
+          key={index}
+        />
       ))}
     </div>
   );
@@ -71,8 +76,16 @@ const processLeaderboard = rawData => {
 
     grouped[commenter].overall_salt = avg;
   });
-  console.log(grouped);
-  return grouped;
+
+  return createRanking(grouped);
+};
+
+const createRanking = grouped => {
+  const ranking = Object.values(grouped).sort((a, b) =>
+    a.overall_salt > b.overall_salt ? 1 : -1
+  );
+
+  return ranking;
 };
 
 export default connect(mapStateToProps, { fetchLeaderboard })(Leaderboard);

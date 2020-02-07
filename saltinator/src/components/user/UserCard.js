@@ -49,7 +49,7 @@ const UserCard = ({
     username,
     comment_id,
     Hacker_News_User: hackerNewsUser,
-    fav_salt_score: salt_score
+    fav_salty_score: salt_score
   },
   saveComment,
   deleteComment,
@@ -67,17 +67,11 @@ const UserCard = ({
   ).length;
 
   const buttonText = () => {
-    if (!errors && isSaved) {
-      return "Saved";
-    } else {
-      return "Save";
-    }
+    return isSaved ? "Saved" : "Save";
   };
 
   const disableButton = () => {
-    if (isSaved) {
-      return true;
-    } else return false;
+    return isSaved ? true : false;
   };
 
   return (
@@ -85,13 +79,18 @@ const UserCard = ({
       {pathname !== "/saved" ? (
         <>
           <div>
-            "{comment}"<br />- {username}
+            "{comment}"<br />- {hackerNewsUser}
           </div>
           {isAuthenticated && (
             <Button
               disabled={disableButton()}
               onClick={() =>
-                saveComment(userID, { userID, comment, username, salt_score })
+                saveComment(userID, {
+                  userID,
+                  comment,
+                  hackerNewsUser,
+                  salt_score
+                })
               }
             >
               {buttonText(comment)}

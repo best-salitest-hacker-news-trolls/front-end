@@ -1,34 +1,11 @@
-import React, { useEffect, useState} from "react";
-import UserCard from "./UserCard";
+import React from "react";
 import styled from "styled-components";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import { commentData } from "../../utils/mockData";
-console.log(axiosWithAuth)
+import { connect } from "react-redux";
+import UserCard from "./UserCard";
 
-const CommentContainer = styled.div`
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: center;
-  // flex-wrap: wrap;
-  // border: 1px solid red;
-  // width: 90vw;
-  // margin: 0 auto;
-`;
+const CommentContainer = styled.div``;
 
-const User = () => {
-const [users, setUsers] = useState([])
-  useEffect(() =>  {
-    axiosWithAuth()
-    .get('users/comments')
-    .then(res => {
-      setUsers(res.data);
-      console.log(res.data)
-    })
-    .catch(error => {
-      console.log("Server Error", error);
-    })
-  }, [])
-
+const User = ({ comments }) => {
   return (
     <div>
       <form>
@@ -37,7 +14,7 @@ const [users, setUsers] = useState([])
       </form>
 
       <CommentContainer>
-        {users.map((comment, index) => (
+        {comments.map((comment, index) => (
           <UserCard comment={comment} key={index} />
         ))}
       </CommentContainer>
@@ -45,4 +22,10 @@ const [users, setUsers] = useState([])
   );
 };
 
-export default User;
+const mapStateToProps = state => {
+  return {
+    comments: state.comments
+  };
+};
+
+export default connect(mapStateToProps, {})(User);

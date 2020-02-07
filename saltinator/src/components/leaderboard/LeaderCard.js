@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+
+import { fetchUser } from "../../actions/user";
 
 const Card = styled.div`
   display: flex;
@@ -9,15 +13,14 @@ const Card = styled.div`
   color: white;
   background-color: #97adce;
   padding: 10px;
-  // border: 2px solid red;
   margin: 5px;
   width: 45vw;
-    @media (max-width: 900px) {
-      width: 65vw;
-    }
-    @media (max-width: 500px) {
-      width: 95vw;
-    }
+  @media (max-width: 900px) {
+    width: 65vw;
+  }
+  @media (max-width: 500px) {
+    width: 95vw;
+  }
 `;
 
 const Button = styled.button`
@@ -47,22 +50,31 @@ const Rank = styled.h3`
   padding-left: 30px;
 `;
 
-const LeaderCard = props => {
+const LeaderCard = ({
+  leader: { Hacker_News_User: username },
+  salt,
+  rank,
+  fetchUser
+}) => {
+  let history = useHistory();
   return (
     <CardContainer>
       <Card>
-        <Rank>#{props.leader.rank}</Rank>
+        <Rank>#{rank}</Rank>
         <h4>
-          {props.leader.username}
+          {username}
           <br />
           <br />
-          Grains of salt: {props.leader.salt_score}
+          Grains of salt: {salt}
         </h4>
-        <StyledLink to={`/user/${props.leader.id}`}>
+        <StyledLink
+          onClick={() => fetchUser(username, history)}
+          to={`/user/${username}`}
+        >
           <Button>View Comments</Button>
         </StyledLink>
       </Card>
     </CardContainer>
   );
 };
-export default LeaderCard;
+export default connect(null, { fetchUser })(LeaderCard);

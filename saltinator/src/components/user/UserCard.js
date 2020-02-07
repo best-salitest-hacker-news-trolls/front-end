@@ -85,7 +85,7 @@ const UserCard = ({
       {pathname !== "/saved" ? (
         <>
           <div>
-            "{comment}"<br />- {username}
+            "{comment}"<br />- {hackerNewsUser}
           </div>
           {isAuthenticated && (
             <Button

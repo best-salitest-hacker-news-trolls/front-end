@@ -4,4 +4,5 @@ export const logout = () => dispatch => {
   dispatch({ type: LOGOUT });
   localStorage.removeItem("salty_token");
   localStorage.removeItem("salty_id");
+  localStorage.removeItem("salty_state");
 };

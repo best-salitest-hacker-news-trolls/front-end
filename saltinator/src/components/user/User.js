@@ -1,18 +1,9 @@
-import React, { useState, useEffect } from "react";
-import UserCard from "./UserCard";
+import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import UserCard from "./UserCard";
 
-import { commentData } from "../../utils/mockData";
-
-const CommentContainer = styled.div`
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: center;
-  // flex-wrap: wrap;
-  // border: 1px solid red;
-  // width: 90vw;
-  // margin: 0 auto;
-`;
+const CommentContainer = styled.div``;
 
 const Headers = styled.form`
   h1,
@@ -21,7 +12,7 @@ const Headers = styled.form`
   }
 `;
 
-const User = () => {
+const User = ({ comments }) => {
   return (
     <div>
       <Headers>
@@ -30,7 +21,7 @@ const User = () => {
       </Headers>
 
       <CommentContainer>
-        {commentData.map((comment, index) => (
+        {comments.map((comment, index) => (
           <UserCard comment={comment} key={index} />
         ))}
       </CommentContainer>
@@ -38,4 +29,10 @@ const User = () => {
   );
 };
 
-export default User;
+const mapStateToProps = state => {
+  return {
+    comments: state.comments
+  };
+};
+
+export default connect(mapStateToProps, {})(User);

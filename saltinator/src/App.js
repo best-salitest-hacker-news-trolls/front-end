@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import PrivateRoute from "./components/PrivateRoute";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
-import { Leaderboard } from "./components/leaderboard/Leaderboard";
+import Leaderboard from "./components/leaderboard/Leaderboard";
 import User from "./components/user/User";
 import Saved from "./components/saved/Saved";
 import { Layout } from "./components/layout/Layout";
@@ -20,26 +20,24 @@ const App = props => {
   return (
     <>
       <Router>
-        <Layout>
-          <Switch>
-            <Redirect exact from="/" to="/leaderboard"></Redirect>
-            <Route path="/register">
-              <Register></Register>
-            </Route>
-            <Route path="/login">
-              <Login></Login>
-            </Route>
-            <Route path="/leaderboard">
-              <Leaderboard></Leaderboard>
-            </Route>
-            <Route path="/user/:id">
-              <User></User>
-            </Route>
-            <PrivateRoute path="/saved" component={Saved}></PrivateRoute>
-          </Switch>
-          {props.errors && <Error message={props.errors.message}></Error>}
-        </Layout>
+        <Layout></Layout>
+        <Switch>
+          <Redirect exact from="/" to="/login"></Redirect>
+          <Route path="/register">
+            <Register></Register>
+          </Route>
+          <Route path="/login">
+            <Login></Login>
+          </Route>
+          <PrivateRoute
+            path="/leaderboard"
+            component={Leaderboard}
+          ></PrivateRoute>
+          <PrivateRoute path="/user/:username" component={User}></PrivateRoute>
+          <PrivateRoute path="/saved" component={Saved}></PrivateRoute>
+        </Switch>
       </Router>
+      {props.errors && <Error message={props.errors.message}></Error>}
     </>
   );
 };

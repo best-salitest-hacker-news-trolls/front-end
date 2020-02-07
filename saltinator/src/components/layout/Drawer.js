@@ -10,7 +10,7 @@ import SearchForm from "./SearchForm";
 
 const Drawer = ({ isAuthenticated, logout, drawerIsVisible, toggleNav }) => {
   return (
-    <Container>
+    <Container show={drawerIsVisible}>
       <SideDrawer show={drawerIsVisible}>
         <SearchForm></SearchForm>
         <Links>
@@ -58,10 +58,11 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, { logout, toggleNav })(Drawer);
 
 const Container = styled.div`
-  max-width: 100%;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
-  position: relative;
+  position: absolute;
+  pointer-events: ${props => (props.show ? `auto` : `none`)};
 `;
 
 const SideDrawer = styled.nav`

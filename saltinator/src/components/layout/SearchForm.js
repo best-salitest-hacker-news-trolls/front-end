@@ -1,31 +1,28 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 import { fetchUser } from "../../actions/user";
 
-const SearchForm = props => {
-  const [state, setState] = useState({
-    username: ""
-  });
+const SearchForm = ({ fetchUser }) => {
+  const [username, setUsername] = useState("");
+  let history = useHistory();
 
   const handleChange = e => {
-    setState({
-      ...state,
-      [e.target.name]: e.target.value
-    });
+    setUsername(e.target.value);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.fetchUser(state);
+    fetchUser(username, history);
   };
 
   return (
     <Form onSubmit={handleSubmit}>
       <label>Search</label>
       <div>
-        <img src="../search.svg" alt="search icon"/>
+        <img src="../search.svg" alt="search icon" />
         <input
           type="text"
           name="username"
@@ -44,8 +41,9 @@ const Form = styled.form`
     border-radius: 4px;
     background-color: #fff;
     display: flex;
-    padding: 5px 5px 5px 10px;
+    padding: 5px 5px 5px 20px;
     align-self: center;
+    width: 30vw;
   }
 
   img {

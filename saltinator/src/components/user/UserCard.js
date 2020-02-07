@@ -49,7 +49,7 @@ const UserCard = ({
     username,
     comment_id,
     Hacker_News_User: hackerNewsUser,
-    fav_salt_score: salt_score
+    fav_salty_score: salt_score
   },
   saveComment,
   deleteComment,
@@ -91,7 +91,12 @@ const UserCard = ({
             <Button
               disabled={disableButton()}
               onClick={() =>
-                saveComment(userID, { userID, comment, username, salt_score })
+                saveComment(userID, {
+                  userID,
+                  comment,
+                  hackerNewsUser,
+                  salt_score
+                })
               }
             >
               {buttonText(comment)}

@@ -44,8 +44,9 @@ const Form = styled.form`
     border-radius: 4px;
     background-color: #fff;
     display: flex;
-    padding: 5px 5px 5px 10px;
+    padding: 5px 5px 5px 20px;
     align-self: center;
+    width: 30vw;
   }
 
   img {

@@ -4,8 +4,9 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
 import { fetchUser } from "../../actions/user";
+import { toggleNav } from "../../actions/toggleNav";
 
-const SearchForm = ({ fetchUser, nav }) => {
+const SearchForm = ({ fetchUser, nav, toggleNav }) => {
   const [username, setUsername] = useState("");
   let history = useHistory();
 
@@ -13,13 +14,16 @@ const SearchForm = ({ fetchUser, nav }) => {
     setUsername(e.target.value);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e, nav) => {
     e.preventDefault();
     fetchUser(username, history);
+    if (!nav) {
+      toggleNav();
+    }
   };
 
   return (
-    <Form onSubmit={handleSubmit} nav={nav}>
+    <Form onSubmit={e => handleSubmit(e, nav)} nav={nav}>
       <label>Search</label>
       <div>
         <img src="../search.svg" alt="search icon" />
@@ -34,7 +38,7 @@ const SearchForm = ({ fetchUser, nav }) => {
   );
 };
 
-export default connect(null, { fetchUser })(SearchForm);
+export default connect(null, { fetchUser, toggleNav })(SearchForm);
 
 const Form = styled.form`
   width: ${props => (props.nav ? `25vw` : `100%`)};

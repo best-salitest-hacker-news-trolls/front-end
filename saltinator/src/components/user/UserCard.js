@@ -67,17 +67,11 @@ const UserCard = ({
   ).length;
 
   const buttonText = () => {
-    if (!errors && isSaved) {
-      return "Saved";
-    } else {
-      return "Save";
-    }
+    return isSaved ? "Saved" : "Save";
   };
 
   const disableButton = () => {
-    if (isSaved) {
-      return true;
-    } else return false;
+    return isSaved ? true : false;
   };
 
   return (

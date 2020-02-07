@@ -93,6 +93,7 @@ const SaltImage = styled.img`
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   padding-right: 20px;
+  color: white;
 
   :visited {
     color: inherit;

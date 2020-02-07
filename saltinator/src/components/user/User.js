@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState} from "react";
 import UserCard from "./UserCard";
 import styled from "styled-components";
-
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { commentData } from "../../utils/mockData";
+console.log(axiosWithAuth)
 
 const CommentContainer = styled.div`
   // display: flex;
@@ -15,6 +16,19 @@ const CommentContainer = styled.div`
 `;
 
 const User = () => {
+const [users, setUsers] = useState([])
+  useEffect(() =>  {
+    axiosWithAuth()
+    .get('users/comments')
+    .then(res => {
+      setUsers(res.data);
+      console.log(res.data)
+    })
+    .catch(error => {
+      console.log("Server Error", error);
+    })
+  }, [])
+
   return (
     <div>
       <form>
@@ -23,7 +37,7 @@ const User = () => {
       </form>
 
       <CommentContainer>
-        {commentData.map((comment, index) => (
+        {users.map((comment, index) => (
           <UserCard comment={comment} key={index} />
         ))}
       </CommentContainer>

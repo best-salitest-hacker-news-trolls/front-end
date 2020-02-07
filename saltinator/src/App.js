@@ -22,19 +22,18 @@ const App = props => {
       <Router>
         <Layout></Layout>
         <Switch>
-          <Redirect exact from="/" to="/leaderboard"></Redirect>
+          <Redirect exact from="/" to="/login"></Redirect>
           <Route path="/register">
             <Register></Register>
           </Route>
           <Route path="/login">
             <Login></Login>
           </Route>
-          <Route path="/leaderboard">
-            <Leaderboard></Leaderboard>
-          </Route>
-          <Route path="/user/:id">
-            <User></User>
-          </Route>
+          <PrivateRoute
+            path="/leaderboard"
+            component={Leaderboard}
+          ></PrivateRoute>
+          <PrivateRoute path="/user/:username" component={User}></PrivateRoute>
           <PrivateRoute path="/saved" component={Saved}></PrivateRoute>
         </Switch>
       </Router>

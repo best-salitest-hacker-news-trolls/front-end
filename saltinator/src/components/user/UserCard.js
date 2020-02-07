@@ -5,16 +5,21 @@ import { saveComment } from "../../actions/saving";
 import { deleteComment } from "../../actions/delete";
 import { useHistory } from "react-router-dom";
 
+import colors from "../../styles/colors";
+
 const Card = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 40vw;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 1.5rem;
   margin: auto;
-  margin-bottom: 10px;
-  background-color: #97adce;
+  margin-bottom: 1.5rem;
+  background-color: ${colors.card};
+  color: ${colors.text};
+  border-radius: 4px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+
   @media (max-width: 900px) {
     width: 65vw;
   }
@@ -23,10 +28,12 @@ const Card = styled.div`
   }
 `;
 const Button = styled.button`
-  background-color: #2a3c58;
+  background-color: ${colors.background};
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
   color: white;
   height: 35px;
   font-family: "Roboto Mono", monospace;
+  margin: 0;
 
   &:hover {
     background-color: #3e5982;
@@ -34,7 +41,7 @@ const Button = styled.button`
   }
 
   :disabled {
-    background-color: #3c3c3c;
+    background-color: #4c4c4c;
     opacity: 0.8;
 
     :hover {
@@ -79,7 +86,7 @@ const UserCard = ({
       {pathname !== "/saved" ? (
         <>
           <div>
-            "{comment}"<br />- {hackerNewsUser}
+            {comment} <br />- {hackerNewsUser}
           </div>
           {isAuthenticated && (
             <Button
@@ -99,7 +106,9 @@ const UserCard = ({
         </>
       ) : (
         <>
-          <br />"{comment}"<br />- {hackerNewsUser}
+          <div>
+            {comment} <br />- {hackerNewsUser}
+          </div>
           <Button onClick={() => deleteComment(userID, comment_id)}>
             Delete
           </Button>

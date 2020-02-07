@@ -10,11 +10,27 @@ const HeaderContainer = styled.div`
   margin: auto;
   width: 45vw;
   justify-content: space-between;
-  @media (max-width: 900px) {
-    width: 65vw;
+
+  @media (max-width: 1200px) {
+    width: 70vw;
   }
-  @media (max-width: 500px) {
-    width: 95vw;
+
+  @media (max-width: 1000px) {
+    width: 75vw;
+  }
+
+  @media (max-width: 900px) {
+    width: 80vw;
+    h2 {
+      display: none;
+    }
+  }
+`;
+
+const Headers = styled.div`
+  h1,
+  h2 {
+    font-weight: 300;
   }
 `;
 
@@ -26,7 +42,7 @@ const Leaderboard = ({ leaderboard: rawData, fetchLeaderboard }) => {
   const leaderboard = processLeaderboard(rawData);
 
   return (
-    <div>
+    <Headers>
       <form>
         <h1>Leaderboard</h1>
       </form>
@@ -45,7 +61,7 @@ const Leaderboard = ({ leaderboard: rawData, fetchLeaderboard }) => {
           key={index}
         />
       ))}
-    </div>
+    </Headers>
   );
 };
 

@@ -120,7 +120,7 @@ const Navigation = ({ logout, isAuthenticated, toggleNav }) => {
         <SaltImage src="../salt.svg" />
       </Logo>
 
-      {isAuthenticated && <SearchForm></SearchForm>}
+      {isAuthenticated && <SearchForm nav></SearchForm>}
 
       <NavLinks>
         <StyledNavLink activeStyle={activeStyles} to="/leaderboard">

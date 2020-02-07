@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 import { fetchUser } from "../../actions/user";
 
-const SearchForm = ({ fetchUser }) => {
+const SearchForm = ({ fetchUser, nav }) => {
   const [username, setUsername] = useState("");
   let history = useHistory();
 
@@ -19,7 +19,7 @@ const SearchForm = ({ fetchUser }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} nav={nav}>
       <label>Search</label>
       <div>
         <img src="../search.svg" alt="search icon" />
@@ -37,13 +37,15 @@ const SearchForm = ({ fetchUser }) => {
 export default connect(null, { fetchUser })(SearchForm);
 
 const Form = styled.form`
+  width: 100%;
+  padding: ${props => props.nav ? `0 2rem 0 2rem` : `0`};
+
   div {
     border-radius: 4px;
     background-color: #fff;
     display: flex;
     padding: 5px 5px 5px 20px;
     align-self: center;
-    width: 30vw;
   }
 
   img {

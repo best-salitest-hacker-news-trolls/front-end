@@ -12,8 +12,8 @@ const Drawer = ({ isAuthenticated, logout, drawerIsVisible, toggleNav }) => {
   return (
     <Container show={drawerIsVisible}>
       <SideDrawer show={drawerIsVisible}>
-        <SearchForm></SearchForm>
         <Links>
+          <SearchForm></SearchForm>
           {isAuthenticated && (
             <>
               <StyledNavLink
@@ -94,7 +94,7 @@ const activeStyles = {
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   font-size: 36px;
-  margin-bottom: 2rem;
+  margin-top: 2rem;
   color: ${colors.text};
 
   :hover {

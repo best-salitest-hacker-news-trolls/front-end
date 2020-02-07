@@ -4,8 +4,6 @@ import LeaderCard from "./LeaderCard";
 import { leaderboardData } from "../../utils/mockData";
 import styled from "styled-components";
 
-import colors from "../../styles/colors";
-
 const HeaderContainer = styled.div`
   display: flex;
   margin: auto;

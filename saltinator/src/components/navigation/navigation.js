@@ -5,8 +5,11 @@ import { connect } from "react-redux";
 
 import SearchForm from "../layout/SearchForm";
 import { logout } from "../../actions/logout";
+import { toggleNav } from "../../actions/toggleNav";
 
 const NavBar = styled.div`
+  z-index: 10;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,8 +18,27 @@ const NavBar = styled.div`
   font-size: 40px;
   background-color: #2a3c58;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
-  @media (max-width: 768px) {
-    flex-direction: column;
+
+  a:first-child {
+    font-size: calc(16px + 1.25vw);
+  }
+
+  div:not(:first-child) a {
+    font-size: calc(6px + 1vw);
+  }
+
+  @media (max-width: 900px) {
+    div:not(:first-child) a {
+      display: none;
+    }
+
+    form {
+      display: none;
+    }
+
+    img {
+      display: inline;
+    }
   }
 `;
 const NavLinks = styled.div`
@@ -28,8 +50,9 @@ const NavLinks = styled.div`
 `;
 const Logo = styled.div`
   display: flex;
+  align-items: center;
+  margin-left: 20px;
   white-space: nowrap;
-  padding: 20px 0 0 20px;
 `;
 
 const shake = keyframes`
@@ -55,9 +78,10 @@ const shake = keyframes`
 `;
 
 const SaltImage = styled.img`
-  width: 70px;
-  height: 70px;
+  width: calc(28px + 1.25vw);
+  height: auto;
   transform: scaleX(-1);
+  padding-top: 10px;
   margin-left: -15px;
 
   :hover {
@@ -78,11 +102,17 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
+const Hamburger = styled.img`
+  display: none;
+  filter: invert(1);
+  width: 25px;
+`;
+
 const activeStyles = {
   textDecoration: "underline"
 };
 
-const Navigation = ({ logout, isAuthenticated }) => {
+const Navigation = ({ logout, isAuthenticated, toggleNav }) => {
   return (
     <NavBar>
       <Logo>
@@ -109,6 +139,7 @@ const Navigation = ({ logout, isAuthenticated }) => {
         )}
 
         {!isAuthenticated && <StyledNavLink to="/login">Login</StyledNavLink>}
+        <Hamburger onClick={toggleNav} src="../hamburger.svg" />
       </NavLinks>
     </NavBar>
   );
@@ -120,4 +151,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { logout })(Navigation);
+export default connect(mapStateToProps, { logout, toggleNav })(Navigation);

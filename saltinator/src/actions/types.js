@@ -27,3 +27,5 @@ export const SAVING_FAILURE = "SAVING_FAILURE";
 export const DELETE_LOADING = "DELETE_LOADING";
 export const DELETE_SUCCESS = "DELETE_SUCCESS";
 export const DELETE_FAILURE = "DELETE_FAILURE";
+
+export const TOGGLE_NAV = "TOGGLE_NAV";

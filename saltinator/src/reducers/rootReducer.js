@@ -7,7 +7,8 @@ const initialState = {
   leaderboard: [],
   comments: [],
   savedComments: [],
-  userID: localStorage.getItem("salty_id") || null
+  userID: localStorage.getItem("salty_id") || null,
+  drawerIsVisible: false
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -99,6 +100,11 @@ export const rootReducer = (state = initialState, action) => {
         isAuthenticated: false,
         isLoading: false,
         userID: null
+      };
+    case types.TOGGLE_NAV:
+      return {
+        ...state,
+        drawerIsVisible: !state.drawerIsVisible
       };
     default:
       return state;

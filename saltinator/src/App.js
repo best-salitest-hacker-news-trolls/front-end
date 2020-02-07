@@ -20,25 +20,26 @@ const App = props => {
   return (
     <>
       <Router>
-        <Layout></Layout>
-        <Switch>
-          <Redirect exact from="/" to="/leaderboard"></Redirect>
-          <Route path="/register">
-            <Register></Register>
-          </Route>
-          <Route path="/login">
-            <Login></Login>
-          </Route>
-          <Route path="/leaderboard">
-            <Leaderboard></Leaderboard>
-          </Route>
-          <Route path="/user/:id">
-            <User></User>
-          </Route>
-          <PrivateRoute path="/saved" component={Saved}></PrivateRoute>
-        </Switch>
+        <Layout>
+          <Switch>
+            <Redirect exact from="/" to="/leaderboard"></Redirect>
+            <Route path="/register">
+              <Register></Register>
+            </Route>
+            <Route path="/login">
+              <Login></Login>
+            </Route>
+            <Route path="/leaderboard">
+              <Leaderboard></Leaderboard>
+            </Route>
+            <Route path="/user/:id">
+              <User></User>
+            </Route>
+            <PrivateRoute path="/saved" component={Saved}></PrivateRoute>
+          </Switch>
+          {props.errors && <Error message={props.errors.message}></Error>}
+        </Layout>
       </Router>
-      {props.errors && <Error message={props.errors.message}></Error>}
     </>
   );
 };
